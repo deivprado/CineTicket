@@ -1,4 +1,4 @@
-package com.daviprado.cineticket.entity;
+package com.daviprado.cineticket.database.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PurchaseEntity {
+public class Purchase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +25,8 @@ public class PurchaseEntity {
     private String status;
     @OneToOne
     @JoinColumn(name = "customer_id", nullable = false)
-    private CustomerEntity customer;
+    private Customer customer;
     @OneToOne
     @JoinColumn(name = "session_id", nullable = false)
-    private SessionEntity session;
+    private Session session;
 }

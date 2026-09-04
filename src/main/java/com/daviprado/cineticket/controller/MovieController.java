@@ -1,27 +1,31 @@
 package com.daviprado.cineticket.controller;
 
+import com.daviprado.cineticket.database.entity.Movie;
+import com.daviprado.cineticket.dto.MovieDto;
 import com.daviprado.cineticket.service.MovieService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/movie")
+@RequiredArgsConstructor
 public class MovieController {
 
-    private MovieService movieService;
-
-    public MovieController(MovieService movieService) {
-        this.movieService = movieService;
-    }
+    private final MovieService movieService;
 
     @GetMapping
-    public String movieGet() {
-        return movieService.teste("davi");
+    @ResponseStatus(HttpStatus.OK)
+    public List<Movie> movieGet() {
+        return movieService.findAll();
     }
 
     @PostMapping
-    public String moviePost() {
-        return "Criado com sucesso!";
+    @ResponseStatus(HttpStatus.CREATED)
+    public void moviePost(@RequestBody MovieDto movieDto) {
+        movieService.createMovie(movieDto);
     }
 
     @DeleteMapping

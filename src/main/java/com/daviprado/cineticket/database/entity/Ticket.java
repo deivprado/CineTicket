@@ -1,4 +1,4 @@
-package com.daviprado.cineticket.entity;
+package com.daviprado.cineticket.database.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,24 +11,20 @@ import java.math.BigDecimal;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TicketEntity {
+public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(nullable = false)
     private BigDecimal price;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "purchase_id", nullable = false)
-    private PurchaseEntity purchase;
-
+    private Purchase purchase;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "session_id", nullable = false)
-    private SessionEntity session;
-
+    private Session session;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "seat_id", nullable = false)
-    private SeatEntity seat;
+    private Seat seat;
 }

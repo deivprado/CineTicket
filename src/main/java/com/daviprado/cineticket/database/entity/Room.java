@@ -1,4 +1,4 @@
-package com.daviprado.cineticket.entity;
+package com.daviprado.cineticket.database.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,18 +9,12 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SeatEntity {
+public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false)
-    private char row;
-
     @Column(nullable = false)
     private Integer number;
-
-    @ManyToOne
-    @JoinColumn(name = "room_id", nullable = false)
-    private RoomEntity romm;
+    @Column(nullable = false)
+    private Integer totalSeats;
 }

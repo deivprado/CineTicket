@@ -1,4 +1,4 @@
-package com.daviprado.cineticket.entity;
+package com.daviprado.cineticket.database.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SessionEntity {
+public class Session {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,12 +25,10 @@ public class SessionEntity {
     private String exhibitionType;
     @Column(nullable = false)
     private BigDecimal ticketPrice;
-
     @OneToOne
     @JoinColumn(name = "movie_id", nullable = false)
-    private MovieEntity movie;
-
+    private Movie movie;
     @OneToOne
     @JoinColumn(name = "room_id", nullable = false)
-    private RoomEntity room;
+    private Room room;
 }
