@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -16,6 +17,10 @@ public class GenreService {
 
     public List<Genre> findAllGenre() {
         return genreRepository.findAll();
+    }
+
+    public Optional<Genre> findGenreById(Long id) {
+        return genreRepository.findById(id);
     }
 
     public void createGenre(GenreDto genreDto) {

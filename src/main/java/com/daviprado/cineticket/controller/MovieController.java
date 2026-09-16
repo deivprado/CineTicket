@@ -19,7 +19,7 @@ public class MovieController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Movie> movieGet() {
-        return movieService.findAll();
+        return movieService.findAllMovie();
     }
 
     @PostMapping
@@ -28,8 +28,9 @@ public class MovieController {
         movieService.createMovie(movieDto);
     }
 
-    @DeleteMapping
-    public String movieDelete() {
-        return "Deletado com sucesso!";
+    @DeleteMapping("/id")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void movieDelete(@PathVariable("id") Long id) {
+        movieService.deleteById(id);
     }
 }

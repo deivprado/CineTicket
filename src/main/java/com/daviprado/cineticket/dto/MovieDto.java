@@ -2,6 +2,7 @@ package com.daviprado.cineticket.dto;
 
 import com.daviprado.cineticket.database.entity.Genre;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Getter
@@ -11,12 +12,16 @@ import lombok.*;
 @AllArgsConstructor
 public class MovieDto {
 
+    @NotNull
     private String name;
+    @NotNull
     private String description;
+    @NotNull
     private Integer durationMinutes;
+    @NotNull
     private String rating;
+    @NotNull
     private String posterUrl;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "genre_id", nullable = false)
-    private Genre genre;
+    @NotNull
+    private Long genreId;
 }
