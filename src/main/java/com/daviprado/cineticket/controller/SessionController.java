@@ -1,23 +1,38 @@
 package com.daviprado.cineticket.controller;
 
+import com.daviprado.cineticket.database.entity.Session;
+import com.daviprado.cineticket.dto.SessionDto;
+import com.daviprado.cineticket.service.SessionService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/session")
+@RequiredArgsConstructor
 public class SessionController {
 
+    private final SessionService sessionService;
+
     @GetMapping
-    public String sessionGet() {
-        return "Super Men";
+    @ResponseStatus(HttpStatus.OK)
+    public List<Session> findAllSession() {
+        return sessionService.findAllSession();
+    }
+
+    @GetMapping(value = "/id")
+    @ResponseStatus(HttpStatus.OK)
+    public Optional<Session> findSessionById(@PathVariable("id") Long id) {
+        return sessionService.findSessionById(id);
     }
 
     @PostMapping
-    public String sessionPost() {
-        return "Criado com sucesso!";
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createSession(SessionDto sessionDto) {
+        sessionService.createSession(sessionDto);
     }
 
-    @DeleteMapping
-    public String sessionDelete() {
-        return "Cancelada com sucesso!";
-    }
 }
